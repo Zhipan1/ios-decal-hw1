@@ -22,44 +22,45 @@ class Words {
 //: ### variables the same type? If not, why?
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: They're not because the instance variables are of type string and the init variables are of type string optional.
 
 
 //: ## Q2: Variable Types and Function Types
-    func arePalindromes(words: [String]) -> Bool {
-        let reversedWords = words.map() {String($0.characters.reverse())}
+    class func arePalindromes(words: [String]) -> Bool? {
+        let reversedWords = words.map() { String(reverse($0)) }
         var numElements = words.count
         
-        for let i = 0; i < numElements; i++ {
+        for i in 0...numElements-1 {
             if words[i] != reversedWords[i] {
                 return false
             }
         }
+        return nil
     }
 //: ### Why does the compiler dislike the **for loop**? Fix it.
 //: ### What else is wrong with this function? You may have to refer to (but **not**
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: Doesn't return anything if all are palindromes.
 
 
 //: ## Q3: More Functions and Object Initialization
-    class func isAnagram() -> Bool {
-        var countLetters : [Character : Int] //Line X
-        var lenA = self.wordA.characters.count
-        var lenB = self.wordB.characters.count
+    func isAnagram() -> Bool? {
+        var countLetters = [Character : Int]()
+        var lenA = count(self.wordA)
+        var lenB = count(self.wordB)
         
         if lenA != lenB {
             return false
         }
         
-        var arrA = Array(self.wordA.characters)
-        var arrB = Array(self.wordB.characters)
+        var arrA = Array(self.wordA)
+        var arrB = Array(self.wordB)
         
         for i in 0...lenA-1 {
             let letter = arrA[i]
-            if let val = countLetters[letter] { //Line Y
+            if let val = countLetters[letter] {
                 countLetters[letter] = val + 1
             } else {
                 countLetters[letter] = 1
@@ -89,7 +90,8 @@ class Words {
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: countLetters becomes a class variable so every time you call isAnagram additional letters are added to the dictionary.
+    
     
     
 }
